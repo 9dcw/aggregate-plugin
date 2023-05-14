@@ -11,6 +11,11 @@ app = quart_cors.cors(quart.Quart(__name__), allow_origin="https://chat.openai.c
 _TODOS = {}
 
 
+@app.get("/")
+def test():
+    return 'working'
+
+
 @app.post("/price")
 async def add_todo(username):
     request = await quart.request.get_json(force=True)
