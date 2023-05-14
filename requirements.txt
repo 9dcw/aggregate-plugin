@@ -1,4 +1,4 @@
 quart
 quart-cors
 requests
-gunicorn
+hypercorn
