@@ -4,7 +4,7 @@ info:
   description: A plugin that allows the user to price simple reinsurance portfolios using chatGPT. If you do not know the user's username, ask them first before making queries to the plugin. Otherwise, use the username "global".
   version: 'v1'
 servers:
-  - url: http://localhost:5003
+  - url: http://gpt.myinsuranceanalyst.com:5003
 paths:
   /price:
     post:

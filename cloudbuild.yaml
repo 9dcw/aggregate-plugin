@@ -1,0 +1,8 @@
+# cloudbuild.yaml
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/my-insurance-analyst/aggregate-plugin', '.']
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['run', 'deploy', 'aggregate-plugin', '--image', 'gcr.io/my-insurance-analyst/aggregate-plugin', '--region', 'us-central', '--platform', 'managed', '--allow-unauthenticated']
+images:
+- 'gcr.io/my-insurance-analyst/aggregate-plugin'
