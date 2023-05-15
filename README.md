@@ -1,6 +1,6 @@
-# ChatGPT plugins quickstart
+# ChatGPT plugin for *Aggregate* 
 
-Get a todo list ChatGPT plugin up and running in under 5 minutes using Python. If you do not already have plugin developer access, please [join the waitlist](https://openai.com/waitlist/plugins).
+Deploys a plugin for an api to the reinsurance analytical package *aggregate* for ChatGPT using Python. If you do not already have plugin developer access, please [join the waitlist](https://openai.com/waitlist/plugins).
 
 ## Setup
 
@@ -28,4 +28,4 @@ The plugin should now be installed and enabled! You can start with a question li
 
 ## Getting help
 
-If you run into issues or have questions building a plugin, please join our [Developer community forum](https://community.openai.com/c/chat-plugins/20).
+If you run into issues or have questions building a plugin, please join GPT's [Developer community forum](https://community.openai.com/c/chat-plugins/20).
