@@ -7,27 +7,29 @@ import requests
 
 app = quart_cors.cors(quart.Quart(__name__), allow_origin="https://chat.openai.com")
 
-# Keep track of todo's. Does not persist if Python session is restarted.
-_TODOS = {}
-
 
 @app.get("/")
 def test():
     return 'working'
 
 
-@app.post("/price")
-async def add_todo(username):
-    request = await quart.request.get_json(force=True)
-    percentile = request.form.get('percentile', '.99')
-    url = 'myinsuranceanalyst.com'
+@app.route("/price", methods=['GET', 'POST'])
+async def price():
+    rq = await quart.request.get_json(force=True)
+    print(rq)
+    if 'percentile' in rq:
+        percentile = float(rq['percentile'])
+    else:
+        percentile = 0.99
+
+    url = 'https://myinsuranceanalyst.com/price'
     headers = ''
     params = {
         'percentile': percentile
     }
     agg_response = requests.post(url, headers=headers, params=params)
-
-    return quart.Response(response='OK', status=200)
+    print(agg_response)
+    return quart.Response(agg_response, mimetype="text/json")
 
 
 @app.get("/logo.png")

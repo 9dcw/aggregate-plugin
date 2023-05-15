@@ -4,24 +4,21 @@ info:
   description: A plugin that allows the user to price simple reinsurance portfolios using chatGPT. If you do not know the user's username, ask them first before making queries to the plugin. Otherwise, use the username "global".
   version: 'v1'
 servers:
-  - url: http://gpt.myinsuranceanalyst.com:5003
+  - url: http://localhost:5003
 paths:
   /price:
     post:
-      summary: "Start aggregation"
+      operationId: agg_quickstart
+      summary: "price reinsurance with a given percentile"
       requestBody:
         required: true
         content:
-          application/x-www-form-urlencoded:
+          application/json:
             schema:
-              type: object
-              properties:
-                percentile:
-                  type: number
-                  default: 0.99
+              $ref: '#/components/schemas/price'
       responses:
         '200':
-          description: "Aggregation result"
+          description: "pricing result"
           content:
             application/json:
               schema:
@@ -29,3 +26,69 @@ paths:
                 properties:
                   result:
                     type: number
+        '400':
+          description: Bad request. cannot price.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  schemas:
+    price:
+      type: object
+      required:
+        - percentile
+        - name
+      properties:
+        percentile:
+          type: number
+          description: "Percentile parameter"
+          example: 0.99
+        name:
+          type: string
+          description: "name of the project"
+          example: "agg Comm.Auto"
+        claims_count:
+          type: string
+          description: "Claims count parameter"
+          example: "10"
+        limit:
+          type: string
+          description: "Limit of the reinsurance"
+          example: "10000"
+        attach:
+          type: string
+          description: "Attachment point of the reinsurance layer"
+          example: "0"
+        sev_dist:
+          type: string
+          description: "Severity distribution name"
+          example: "lognorm"
+        sev_mean:
+          type: string
+          description: "Severity mean parameter"
+          example: "50"
+        sev_cv:
+          type: string
+          description: "Severity coefficient of variation parameter"
+          example: "4"
+        distortion_label:
+          type: string
+          description: "the label to name the distortion function, based on the selected distortion"
+          example: "myDUAL"
+        distortion_name:
+          type: string
+          description: "the name of the distortion function"
+          enum: [Dual, Proportional hazard, Wang, TVaR]
+          example: "dual"
+        distortion_param:
+          type: string
+          description: "Frequency distribution parameter"
+          example: "poisson"
+
+    Error:
+      type: object
+      properties:
+        message:
+          type: string

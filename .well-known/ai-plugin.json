@@ -1,21 +1,19 @@
 {
     "schema_version": "v1",
     "name_for_human": "Reinsurance Pricing Plugin",
-    "name_for_model": "reinsurance pricing",
+    "name_for_model": "reinsurance_pricing",
     "description_for_human": "Plugin for pricing simple reinsurance treaties",
-    "description_for_model": "Plugin for pricing simple reinsurance treaties and structures",
+    "description_for_model": "Plugin for pricing simple reinsurance with a given percentile",
     "auth": {
       "type": "none"
     },
     "api": {
       "type": "openapi",
-      "url": "http://gpt.myinsuranceanalyst.com/openapi.yaml",
-
-      "comment": "http://localhost:5003/openapi.yaml",
+      "url": "http://localhost:5003/openapi.yaml",
       "is_user_authenticated": false
     },
-    "logo_url": "http://gpt.myinsuranceanalyst.com/logo.png",
+    "logo_url": "http://localhost/logo.png",
     "contact_email": "david@notunreasonable.com",
-    "legal_info_url": "http://notunreasonable.com/legal"
+    "legal_info_url": "https://notunreasonable.com/legal"
   }
   
