@@ -3,7 +3,7 @@
     "name_for_human": "Reinsurance Pricing Plugin",
     "name_for_model": "reinsurance_pricing",
     "description_for_human": "Plugin for pricing simple reinsurance treaties",
-    "description_for_model": "Plugin for pricing reinsurance programs using a variety of inputs",
+    "description_for_model": "Plugin for pricing reinsurance programs",
     "auth": {
       "type": "none"
     },
