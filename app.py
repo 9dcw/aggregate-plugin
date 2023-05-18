@@ -17,19 +17,12 @@ def test():
 async def price():
     rq = await quart.request.get_json(force=True)
     print(rq)
-    if 'percentile' in rq:
-        percentile = float(rq['percentile'])
-    else:
-        percentile = 0.99
-
     url = 'https://myinsuranceanalyst.com/price'
     headers = ''
-    params = {
-        'percentile': percentile
-    }
-    agg_response = requests.post(url, headers=headers, params=params)
+
+    agg_response = requests.post(url, headers=headers, json=rq)
     print(agg_response)
-    return quart.Response(agg_response, mimetype="text/json")
+    return quart.Response(agg_response, mimetype="application/json")
 
 
 @app.get("/logo.png")

@@ -3,7 +3,7 @@
     "name_for_human": "Reinsurance Pricing Plugin",
     "name_for_model": "reinsurance_pricing",
     "description_for_human": "Plugin for pricing simple reinsurance treaties",
-    "description_for_model": "Plugin for pricing simple reinsurance with a given percentile",
+    "description_for_model": "Plugin for pricing reinsurance programs using a variety of inputs",
     "auth": {
       "type": "none"
     },
@@ -12,7 +12,7 @@
       "url": "http://localhost:5003/openapi.yaml",
       "is_user_authenticated": false
     },
-    "logo_url": "http://localhost/logo.png",
+    "logo_url": "http://localhost:5003/logo.png",
     "contact_email": "david@notunreasonable.com",
     "legal_info_url": "https://notunreasonable.com/legal"
   }

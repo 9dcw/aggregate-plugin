@@ -43,15 +43,23 @@ components:
       properties:
         percentile:
           type: number
+          minimum: 0
+          exclusiveMinimum: true
+          maximum: 1
           description: "Percentile parameter"
           example: 0.99
         name:
           type: string
           description: "name of the project"
-          example: "agg Comm.Auto"
+          example: "Comm.Auto"
+        freq_dist:
+          type: string
+          description: "frequency distribution"
+          enum: [poisson, binomial, geometric, logarithmic]
+          example: "poisson"
         claims_count:
           type: string
-          description: "Claims count parameter"
+          description: "frequency parameter"
           example: "10"
         limit:
           type: string
@@ -64,6 +72,14 @@ components:
         sev_dist:
           type: string
           description: "Severity distribution name"
+          enum: [alpha, argus, bradford, chi, chi2, dgamma, dweibull, erlang,
+                                exponnorm, exponpow, fatiguelife, fisk, foldcauchy, foldnorm,
+                                gamma, genextreme, genhalflogistic, genlogistic, gennorm, genpareto,
+                                gompertz, halfgennorm, invgamma, invgauss, invweibull, kappa3, ksone,
+                                kstwo, laplace_asymmetric, loggamma, loglaplace, lognorm, lomax,
+                                nakagami, pareto, pearson3, powerlaw, powernorm, rdist, recipinvgauss,
+                                rice, skewcauchy, skewnorm, t, triang, truncexpon, tukeylambda,
+                                vonmises, vonmises_line, weibull_max, weibull_min, wrapcauchy]
           example: "lognorm"
         sev_mean:
           type: string
@@ -84,8 +100,8 @@ components:
           example: "dual"
         distortion_param:
           type: string
-          description: "Frequency distribution parameter"
-          example: "poisson"
+          description: "parameter of the distortion function"
+          example: "1.94363"
 
     Error:
       type: object
