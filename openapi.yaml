@@ -1,21 +1,21 @@
 openapi: 3.0.1
 info:
   title: Aggregate Plugin
-  description: A plugin that allows the user to price simple reinsurance portfolios using chatGPT. If you do not know the user's username, ask them first before making queries to the plugin. Otherwise, use the username "global".
+  description: A plugin that allows the user to price insurance and reinsurance using chatGPT.
   version: 'v1'
 servers:
   - url: http://localhost:5003
 paths:
-  /price:
+  /xol:
     post:
-      operationId: agg_quickstart
-      summary: "price reinsurance with a given percentile"
+      operationId: xol_quickstart
+      summary: "price excess of loss reinsurance with a given limit and attachment point"
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/price'
+              $ref: '#/components/schemas/pricing'
       responses:
         '200':
           description: "pricing result"
@@ -32,13 +32,37 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-
+  /qs:
+    post:
+      operationId: qs_quickstart
+      summary: "price quota share reinsurance with a given portfolio distribution"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/pricing'
+      responses:
+        '200':
+          description: "pricing result"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: number
+        '400':
+          description: Bad request. cannot price.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 components:
   schemas:
-    price:
+    pricing:
       type: object
       required:
-        - percentile
         - name
       properties:
         percentile:
